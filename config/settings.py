@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'Question',
     'rest_framework',
     'QuestionAPI',
-    'messenger'
+    'messenger',
+    'Messengerapi'
 ]
 
 REST_FRAMEWORK={

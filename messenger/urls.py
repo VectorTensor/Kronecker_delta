@@ -4,4 +4,3 @@ from .views import ShowMessenger
 urlpatterns=[
         path('',ShowMessenger,name='Messenger')
         ]
-print("Hello")
