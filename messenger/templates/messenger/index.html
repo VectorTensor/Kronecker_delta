@@ -1,7 +1,18 @@
 <html>
-	<head>
+	<head><script>
+			document.addEventListener('DOMContentLoaded',function() {
+				fetch('http://127.0.0.1:8000/messAPI')
+				.then(response=> response.json())
+				.then(data=>{
+					document.getElementById('Message').innerHTML=data[0].Message
+				})
+			} )
+		</script>
+
 	</head>
 	<body>
 		This is the index page of messenger
+		<div id="Message">
+		</div>
 	</body>
 </html>
