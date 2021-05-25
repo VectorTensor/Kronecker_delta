@@ -1,11 +1,22 @@
-<html>
+<!DOCTYPE html>
+
+<html lang ="en">
 	<head>
-		<title>
-			Main</title>
-		</head>
+		<meta charset = "utf-8">
+		<title>Main</title>
+	</head>
 
 	<body>
-		This is the main question page where we check if a person is worth it or not
+		<p>This is the main question page where we check if a person is worth it or not</p>
+		<script>
+			document.addEventListener('DOMContentLoaded',() =>{
+				fetch('http://localhost:8000/QuesData',{method : 'GET'})
+				.then(response => response.json())
+				.then(data => {
+					console.log(data);
+				});
+			});
+		</script>
 
 	</body>
 </html>
