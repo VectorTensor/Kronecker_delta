@@ -6,7 +6,7 @@
 
 	<body>
 		<p>This is the main question page where we check if a person is worth it or not</p>
-		script>
+		<script>
 			document.addEventListener('DOMContentLoaded',() =>{
 				fetch('http://localhost:8000/QuesData',{method : 'GET'})
 				.then(response => response.json())
