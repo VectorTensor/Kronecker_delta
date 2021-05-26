@@ -1,18 +1,91 @@
 <html>
-	<head><script>
+	<head>
+<style>
+.Message {
+border-radius: 10px;
+background-color:blue;
+color: white;
+padding:1% 1% 1% 1%;
+position:relative;
+left:50%;
+width:fit-content;
+
+margin:50px;
+text-align:center;
+}
+#Message_box{
+	overflow: scroll;
+	position:relative;
+	height:80%;
+	width:90%;
+}
+#messaging_box {
+	height:80px;
+	width:70%;
+	position:absolute;
+	top: 85%;
+	left:15%;
+}
+#name{
+	border-radius: 10px;
+	width:70%;
+	height:70px;
+}
+</style>
+
+		<script>
+			let x=0;
+			let n=0;
+function load(data){
+	
+										
+					console.log(x)	
+					for (i=data.length -x ; i<n;i++){
+						let e = document.createElement('div');
+						ID= `message_${i}`
+						e.setAttribute('id',ID)
+						console.log(i)
+						e.setAttribute('class','Message')
+						document.getElementById('Message_box').appendChild(e);
+						document.getElementById(ID).innerHTML=data[i].Message;
+						
+					}
+}
+function more(){
+	x=x+4;
+	n=n-4;
+	fetch('http://127.0.0.1:8000/messAPI')		
+	.then(response=> response.json())
+	.then(data=>{
+		load(data);
+	})
+	
+
+}
+	document.addEventListener('DOMContentLoaded',function() {
+	});
 			document.addEventListener('DOMContentLoaded',function() {
 				fetch('http://127.0.0.1:8000/messAPI')
 				.then(response=> response.json())
 				.then(data=>{
-					document.getElementById('Message').innerHTML=data[0].Message
+					n=data.length
+					x=4
+					load(data);
 				})
 			} )
 		</script>
 
 	</head>
 	<body>
-		This is the index page of messenger
-		<div id="Message">
-		</div>
+		<div id="Message_box">
+</div>
+<div id="messaging_box">
+	<form>
+		
+	Message: <input type="text" name="name" id="name" required>
+
+	</form>
+
+</div>
 	</body>
 </html>
