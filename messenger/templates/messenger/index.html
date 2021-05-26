@@ -18,6 +18,7 @@ text-align:center;
 	position:relative;
 	height:80%;
 	width:90%;
+
 }
 #messaging_box {
 	height:80px;
@@ -34,13 +35,16 @@ text-align:center;
 </style>
 
 		<script>
-			let x=0;
-			let n=0;
-function load(data){
 	
 										
-					console.log(x)	
-					for (i=data.length -x ; i<n;i++){
+	
+
+			document.addEventListener('DOMContentLoaded',function() {
+				fetch('http://127.0.0.1:8000/messAPI')
+				.then(response=> response.json())
+				.then(data=>{
+
+					for (i=0 ; i<data.length;i++){
 						let e = document.createElement('div');
 						ID= `message_${i}`
 						e.setAttribute('id',ID)
@@ -50,27 +54,6 @@ function load(data){
 						document.getElementById(ID).innerHTML=data[i].Message;
 						
 					}
-}
-function more(){
-	x=x+4;
-	n=n-4;
-	fetch('http://127.0.0.1:8000/messAPI')		
-	.then(response=> response.json())
-	.then(data=>{
-		load(data);
-	})
-	
-
-}
-	document.addEventListener('DOMContentLoaded',function() {
-	});
-			document.addEventListener('DOMContentLoaded',function() {
-				fetch('http://127.0.0.1:8000/messAPI')
-				.then(response=> response.json())
-				.then(data=>{
-					n=data.length
-					x=4
-					load(data);
 				})
 			} )
 		</script>
