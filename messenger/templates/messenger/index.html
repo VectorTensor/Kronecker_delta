@@ -5,20 +5,28 @@
 border-radius: 10px;
 background-color:blue;
 color: white;
-padding:1% 1% 1% 1%;
-position:relative;
-left:50%;
+padding-top:1%;
+padding-bottom:0.25%;
+padding-left:1%;
+padding-right:1%;
 width:fit-content;
-
-margin:50px;
-text-align:center;
+margin:10px;
+position:relative;
+display:flex;
+flex-direction:column;
+align-content:space-between;
 }
 #Message_box{
-	overflow: scroll;
+	overflow-x: auto;
 	position:relative;
+	left:10%;
 	height:80%;
-	width:90%;
-
+	width:80%;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	align-content:flex-end;
+	justify-content:center;
 }
 #messaging_box {
 	height:80px;
@@ -32,6 +40,16 @@ text-align:center;
 	width:70%;
 	height:70px;
 }
+.text{
+
+}
+
+
+					.User {
+						font-size:10px;
+						padding-top:5px;
+						padding-left:3px;
+					}					
 </style>
 
 		<script>
@@ -47,11 +65,19 @@ text-align:center;
 					for (i=0 ; i<data.length;i++){
 						let e = document.createElement('div');
 						ID= `message_${i}`
+						let p=document.createElement('div')
+						let q= document.createElement('div')
 						e.setAttribute('id',ID)
-						console.log(i)
 						e.setAttribute('class','Message')
 						document.getElementById('Message_box').appendChild(e);
-						document.getElementById(ID).innerHTML=data[i].Message;
+
+						p.innerHTML=data[i].Message;
+						p.setAttribute('class','text');
+						q.setAttribute('class','User');
+						q.innerHTML=data[i].User;
+
+						document.getElementById(ID).appendChild(p)
+						document.getElementById(ID).appendChild(q)
 						
 					}
 				})
@@ -63,10 +89,10 @@ text-align:center;
 		<div id="Message_box">
 </div>
 <div id="messaging_box">
-	<form>
-		
+	<form action="{% url 'poster'%}" method="post">
+{% csrf_token %}		
 	Message: <input type="text" name="name" id="name" required>
-
+	<input type="submit" value="OK">
 	</form>
 
 </div>
