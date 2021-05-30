@@ -1,0 +1,22 @@
+<html>
+
+	
+	<head>
+		<title>
+		Login page
+		</title>
+
+	</head>
+	<body>
+		<form action="{% url 'Mess:Messenger' %}" method= "post">
+			{% csrf_token%}
+		Name: <input type="Text" name="Name" id="Name" required>
+		password :	<input type="password" name="pass" id="password"required>
+			<input type="submit" value="ok">
+		</form>
+
+	</body>
+
+
+</html>
+

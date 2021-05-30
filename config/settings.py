@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Question',
     'rest_framework',
-    'QuestionAPI'
+    'QuestionAPI',
+    'messenger',
+    'Messengerapi'
 ]
 
 REST_FRAMEWORK={
