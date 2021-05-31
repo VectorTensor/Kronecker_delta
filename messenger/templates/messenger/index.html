@@ -1,0 +1,100 @@
+<html>
+	<head>
+<style>
+.Message {
+border-radius: 10px;
+background-color:blue;
+color: white;
+padding-top:1%;
+padding-bottom:0.25%;
+padding-left:1%;
+padding-right:1%;
+width:fit-content;
+margin:10px;
+position:relative;
+display:flex;
+flex-direction:column;
+align-content:space-between;
+}
+#Message_box{
+	overflow-x: auto;
+	position:relative;
+	left:10%;
+	height:80%;
+	width:80%;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	align-content:flex-end;
+	justify-content:center;
+}
+#messaging_box {
+	height:80px;
+	width:70%;
+	position:absolute;
+	top: 85%;
+	left:15%;
+}
+#name{
+	border-radius: 10px;
+	width:70%;
+	height:70px;
+}
+.text{
+
+}
+
+
+					.User {
+						font-size:10px;
+						padding-top:5px;
+						padding-left:3px;
+					}					
+</style>
+
+		<script>
+	
+										
+	
+
+			document.addEventListener('DOMContentLoaded',function() {
+				fetch('http://127.0.0.1:8000/messAPI')
+				.then(response=> response.json())
+				.then(data=>{
+
+					for (i=0 ; i<data.length;i++){
+						let e = document.createElement('div');
+						ID= `message_${i}`
+						let p=document.createElement('div')
+						let q= document.createElement('div')
+						e.setAttribute('id',ID)
+						e.setAttribute('class','Message')
+						document.getElementById('Message_box').appendChild(e);
+
+						p.innerHTML=data[i].Message;
+						p.setAttribute('class','text');
+						q.setAttribute('class','User');
+						q.innerHTML=data[i].User;
+
+						document.getElementById(ID).appendChild(p)
+						document.getElementById(ID).appendChild(q)
+						
+					}
+				})
+			} )
+		</script>
+
+	</head>
+	<body>
+		<div id="Message_box">
+</div>
+<div id="messaging_box">
+	<form action="{% url 'Mess:poster'%}" method="post">
+{% csrf_token %}		
+	Message: <input type="text" name="name" id="name" required>
+	<input type="submit" value="OK">
+	</form>
+
+</div>
+	</body>
+</html>
