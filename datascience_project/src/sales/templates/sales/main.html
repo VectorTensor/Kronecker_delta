@@ -11,9 +11,9 @@ SalesList
 sales List<br>
 
 {% for obj in object_list %}
-
-  <a href="{{obj.get_absolute_url}}">{{obj.transctionId}}</a>
-
+  <div class='card mb-3'>
+    <a href="{{obj.get_absolute_url}}" class = 'card-body'>{{obj.transctionId}}</a>
+  </div>
 {% endfor %}
 
 {% endblock content %}
